@@ -968,7 +968,7 @@ then
 		cp $fstab_tmp $fstab
 		printf "Your original fstab is backed up to $fstab_save\n"
 
-		cmdline_txt=$(realpath /boot/cmdline.txt)
+		cmdline_txt=/boot/cmdline.txt
 		cmdline_save=$cmdline_txt.${PGM}-save
 		if [ -f $cmdline_txt ] && grep -q "$src_root_dev" $cmdline_txt
 		then
@@ -977,7 +977,7 @@ then
 			if [ "$partuuid" != "" ]
 			then
 				cp $cmdline_txt $cmdline_save
-				sed -i "s/\/dev\/$root_part/PARTUUID=$partuuid/" $cmdline_txt
+				sed -i --follow-symlinks "s/\/dev\/$root_part/PARTUUID=$partuuid/" $cmdline_txt
 				printf "  Editing $cmdline_txt, changing root=$src_root_dev to root=PARTUUID=$partuuid\n"
 				printf "Your original cmdline.txt is backed up to $cmdline_save\n"
 			fi
