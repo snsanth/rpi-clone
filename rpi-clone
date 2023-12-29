@@ -1727,7 +1727,7 @@ qecho ""
 # Fix PARTUUID or device name references in cmdline.txt and fstab
 #
 fstab=${clone}/etc/fstab
-cmdline_txt=$(realpath ${clone}/boot/cmdline.txt)
+cmdline_txt=${clone}$(realpath /boot/cmdline.txt)
 
 if [ -f $cmdline_txt ]
 then
