@@ -957,7 +957,7 @@ then
 		if grep -q "^/dev/${src_partition[p]}" $fstab_tmp
 		then
 			partuuid=$(lsblk -n -o PARTUUID /dev/${src_partition[p]})
-			sed -i "s/\/dev\/${src_partition[p]}/PARTUUID=$partuuid/" $fstab_tmp
+			sed -i --follow-symlinks "s/\/dev\/${src_partition[p]}/PARTUUID=$partuuid/" $fstab_tmp
 			printf "  Editing $fstab, changing /dev/${src_partition[p]} to $partuuid\n"
 			((++count))
 		fi
@@ -1727,7 +1727,7 @@ qecho ""
 # Fix PARTUUID or device name references in cmdline.txt and fstab
 #
 fstab=${clone}/etc/fstab
-cmdline_txt=$(realpath ${clone}/boot/cmdline.txt)
+cmdline_txt=${clone}/boot/cmdline.txt
 
 if [ -f $cmdline_txt ]
 then
@@ -1740,11 +1740,11 @@ then
 	if grep -q $src_disk_ID $cmdline_txt
 	then
 		qecho "Editing $cmdline_txt PARTUUID to use $dst_disk_ID"
-		sed -i "s/${src_disk_ID}/${dst_disk_ID}/" "$cmdline_txt"
+		sed -i --follow-symlinks "s/${src_disk_ID}/${dst_disk_ID}/" "$cmdline_txt"
 	elif [ "$edit_fstab_name" != "" ] && grep -q ${src_part_base} $cmdline_txt
 	then
 		qecho "Editing $cmdline_txt references from $src_part_base to $edit_fstab_name"
-		sed -i "s/${src_part_base}/$edit_fstab_name/" "$cmdline_txt"
+		sed -i --follow-symlinks "s/${src_part_base}/$edit_fstab_name/" "$cmdline_txt"
 	fi
 	if ((leave_sd_usb_boot && SD_slot_boot))
 	then
@@ -1757,11 +1757,11 @@ fi
 if grep -q $src_disk_ID $fstab
 then
 	qecho "Editing $fstab PARTUUID to use $dst_disk_ID"
-	sed -i "s/${src_disk_ID}/${dst_disk_ID}/g" "$fstab"
+	sed -i --follow-symlinks "s/${src_disk_ID}/${dst_disk_ID}/g" "$fstab"
 elif [ "$edit_fstab_name" != "" ] && grep -q ${src_part_base} $fstab
 then
 	qecho "Editing $fstab references from $src_part_base to $edit_fstab_name"
-	sed -i "s/${src_part_base}/${edit_fstab_name}/" "$fstab"
+	sed -i --follow-symlinks "s/${src_part_base}/${edit_fstab_name}/" "$fstab"
 fi
 
 
