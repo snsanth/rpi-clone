@@ -957,7 +957,7 @@ then
 		if grep -q "^/dev/${src_partition[p]}" $fstab_tmp
 		then
 			partuuid=$(lsblk -n -o PARTUUID /dev/${src_partition[p]})
-			sed -i --follow-symlinks "s/\/dev\/${src_partition[p]}/PARTUUID=$partuuid/" $fstab_tmp
+			sed -i "s/\/dev\/${src_partition[p]}/PARTUUID=$partuuid/" $fstab_tmp
 			printf "  Editing $fstab, changing /dev/${src_partition[p]} to $partuuid\n"
 			((++count))
 		fi
@@ -968,7 +968,7 @@ then
 		cp $fstab_tmp $fstab
 		printf "Your original fstab is backed up to $fstab_save\n"
 
-		cmdline_txt=/boot/cmdline.txt
+		cmdline_txt=$(realpath /boot/cmdline.txt)
 		cmdline_save=$cmdline_txt.${PGM}-save
 		if [ -f $cmdline_txt ] && grep -q "$src_root_dev" $cmdline_txt
 		then
@@ -977,7 +977,7 @@ then
 			if [ "$partuuid" != "" ]
 			then
 				cp $cmdline_txt $cmdline_save
-				sed -i --follow-symlinks "s/\/dev\/$root_part/PARTUUID=$partuuid/" $cmdline_txt
+				sed -i "s/\/dev\/$root_part/PARTUUID=$partuuid/" $cmdline_txt
 				printf "  Editing $cmdline_txt, changing root=$src_root_dev to root=PARTUUID=$partuuid\n"
 				printf "Your original cmdline.txt is backed up to $cmdline_save\n"
 			fi
@@ -1727,7 +1727,7 @@ qecho ""
 # Fix PARTUUID or device name references in cmdline.txt and fstab
 #
 fstab=${clone}/etc/fstab
-cmdline_txt=${clone}/boot/cmdline.txt
+cmdline_txt=$(realpath ${clone}/boot/cmdline.txt)
 
 if [ -f $cmdline_txt ]
 then
@@ -1740,11 +1740,11 @@ then
 	if grep -q $src_disk_ID $cmdline_txt
 	then
 		qecho "Editing $cmdline_txt PARTUUID to use $dst_disk_ID"
-		sed -i --follow-symlinks "s/${src_disk_ID}/${dst_disk_ID}/" "$cmdline_txt"
+		sed -i "s/${src_disk_ID}/${dst_disk_ID}/" "$cmdline_txt"
 	elif [ "$edit_fstab_name" != "" ] && grep -q ${src_part_base} $cmdline_txt
 	then
 		qecho "Editing $cmdline_txt references from $src_part_base to $edit_fstab_name"
-		sed -i --follow-symlinks "s/${src_part_base}/$edit_fstab_name/" "$cmdline_txt"
+		sed -i "s/${src_part_base}/$edit_fstab_name/" "$cmdline_txt"
 	fi
 	if ((leave_sd_usb_boot && SD_slot_boot))
 	then
@@ -1757,11 +1757,11 @@ fi
 if grep -q $src_disk_ID $fstab
 then
 	qecho "Editing $fstab PARTUUID to use $dst_disk_ID"
-	sed -i --follow-symlinks "s/${src_disk_ID}/${dst_disk_ID}/g" "$fstab"
+	sed -i "s/${src_disk_ID}/${dst_disk_ID}/g" "$fstab"
 elif [ "$edit_fstab_name" != "" ] && grep -q ${src_part_base} $fstab
 then
 	qecho "Editing $fstab references from $src_part_base to $edit_fstab_name"
-	sed -i --follow-symlinks "s/${src_part_base}/${edit_fstab_name}/" "$fstab"
+	sed -i "s/${src_part_base}/${edit_fstab_name}/" "$fstab"
 fi
 
 
