@@ -1,21 +1,20 @@
 ## rpi-clone
 
-This updated code is located in a fork of Bill Willsons git repository
-https://github.com/billw2/rpi-clone at https://github.com/geerlingguy/rpi-clone
+`rpi-clone` is a shell script for cloning a running Raspberry Pi booted source
+disk (SD card or USB disk) to a destination disk which will be bootable.
 
-Version 2 is a complete rewrite with improved capability over
-the original.  See the examples below.
+Destinations include:
 
-rpi-clone is a shell script that is for cloning a running
-Raspberry Pi booted source disk (SD card or USB disk) to a destination
-disk which will be bootable. Destination disks are SD cards in the SD
-card slot or a USB card reader, USB flash disks, or USB hard drives.
+  - SD cards in the SD card slot or a USB card reader
+  - USB flash drives
+  - USB hard drives and SSDs
+  - NVMe drives attached directly to the Pi PCIe bus
 
-I also use rpi-clone on my Debian desktop, but there are too many
-variables in how an /etc/fstab can be set up and a desktop bootloader like
-grub can be configured for this to be an officially supported way of
-using rpi-clone.  See On other OS below.
+`rpi-clone` can be used on other Debian systems, but is only tested and meant
+for Raspberry Pi OS. See 'On other OS' below.
 
+> This project is a fork of [the original `rpi-clone`](https://github.com/billw2/rpi-clone)
+> by Bill Wilson, but the original project was abandoned in 2020.
 
 #### Clone by initialization
 An initialization clone starts by imaging the source disk partition
