@@ -1,5 +1,8 @@
 ## rpi-clone
-Latest version: 2.0.22
+Latest version: 2.0.23
+
+This updated code is located in a fork of Bill Willsons git repository
+https://github.com/billw2/rpi-clone at https://github.com/framps/rpi-clone
 
 Version 2 is a complete rewrite with improved capability over
 the original.  See the examples below.
@@ -45,7 +48,7 @@ only Debian packages with apt-get.
 
 #### On a Raspberry Pi:
 ```
-	$ git clone https://github.com/billw2/rpi-clone.git 
+	$ git clone https://github.com/framps/rpi-clone.git
 	$ cd rpi-clone
 	$ sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
 ```
@@ -66,7 +69,7 @@ add them to the rpi-clone-setup script.
   To install on another OS, rpi-clone may be renamed to suit.  For example,
   on my Debian desktop I rename:
 ```
-	$ git clone https://github.com/billw2/rpi-clone.git 
+	$ git clone https://github.com/framps/rpi-clone.git
 	$ cd rpi-clone
 	$ sudo cp rpi-clone /usr/local/sbin/sys-clone
 	$ sudo cp rpi-clone-setup /usr/local/sbin/sys-clone-setup
@@ -256,7 +259,7 @@ Booted disk: mmcblk0 16.0GB                Destination disk: sdb 8.0GB
 ---------------------------------------------------------------------------
 Part      Size    FS     Label           Part   Size    FS     Label
 1 /boot   58.4MB  fat16  --              1       8.0GB  fat32  --
-2 root    16.0GB  ext4   SD-RPI-s1                               
+2 root    16.0GB  ext4   SD-RPI-s1
 ---------------------------------------------------------------------------
 == Initialize: IMAGE mmcblk0 partition table to sdb - FS types mismatch ==
 1 /boot     (22.5MB used)    : IMAGE     to sdb1  FSCK
@@ -271,7 +274,7 @@ Verbose mode           : no
 
 Initialize and clone to the destination disk sdb?  (yes/no): yes
 Optional destination rootfs /dev/sdb2 label (16 chars max): SD-RPI-8a
-... 
+...
 ```
 
 #### 2) Subsequent clone to the same SD card in USB card reader as example 1
@@ -299,7 +302,7 @@ Run setup script       : rpi-clone-setup  rpi2
 Verbose mode           : no
 -----------------------:
 
-Ok to proceed with the clone?  (yes/no): 
+Ok to proceed with the clone?  (yes/no):
 ```
 
 #### 3) Cloning a Pi3 when fstab uses PARTUUID
@@ -407,7 +410,7 @@ and using rpi-clone for a clone back to the SD card slot will not work.
 
 
 #### 6) Clone to smaller 4GB SD card
-I happen to have an old 4GB SD card and here's a try to clone to it: 
+I happen to have an old 4GB SD card and here's a try to clone to it:
 ```
 root@rpi2: ~$ rpi-clone sda
 
@@ -513,8 +516,8 @@ Booted disk: sda 64.2GB                    Destination disk: sdb 31.5GB
 ---------------------------------------------------------------------------
 Part               Size    FS     Label           Part   Size    FS     Label
 1 /boot           104.4MB  fat32  --              1      31.5GB  fat32  --
-2 root             16.8GB  ext4   Samsung 64GB A                          
-3 /home/pi/media   47.3GB  ext4   --                                      
+2 root             16.8GB  ext4   Samsung 64GB A
+3 /home/pi/media   47.3GB  ext4   --
 ---------------------------------------------------------------------------
 == Initialize: IMAGE sda partition table to sdb - FS types mismatch ==
 1 /boot               (21.5MB used)  : IMAGE     to sdb1  FSCK
@@ -528,7 +531,7 @@ Verbose mode           : no
                        :   The partition structure will be imaged from sda.
 -----------------------:
 
-Initialize and clone to the destination disk sdb?  (yes/no): 
+Initialize and clone to the destination disk sdb?  (yes/no):
 ```
 Note that if I had partitioned the 64GB disk with more than three
 partitions it would have been more difficult to clone down to the
@@ -550,8 +553,8 @@ Booted disk: sda 64.2GB                    Destination disk: mmcblk0 15.8GB
 ---------------------------------------------------------------------------
 Part               Size    FS     Label           Part   Size    FS     Label
 1 /boot           104.4MB  fat32  --              1      15.8GB  fat32  --
-2 root             16.8GB  ext4   Samsung 64GB A                       
-3 /home/pi/media   47.3GB  ext4   --                                   
+2 root             16.8GB  ext4   Samsung 64GB A
+3 /home/pi/media   47.3GB  ext4   --
 ---------------------------------------------------------------------------
 Initialize required    : partition - types mismatch.
                        :   The minimum destination disk size is 16.9GB
@@ -572,8 +575,8 @@ Booted disk: sda 64.2GB                    Destination disk: mmcblk0 15.8GB
 ---------------------------------------------------------------------------
 Part               Size    FS     Label           Part   Size    FS     Label
 1 /boot           104.4MB  fat32  --              1      15.8GB  fat32  --
-2 root             16.8GB  ext4   Samsung 64GB A                          
-3 /home/pi/media   47.3GB  ext4   --                                      
+2 root             16.8GB  ext4   Samsung 64GB A
+3 /home/pi/media   47.3GB  ext4   --
 ---------------------------------------------------------------------------
 == Initialize: IMAGE sda partition table to mmcblk0 - forced by option ==
 1 /boot               (21.5MB used)  : IMAGE     to mmcblk0p1  FSCK
@@ -587,7 +590,7 @@ Verbose mode           : no
                        :   The partition structure will be imaged from sda.
 -----------------------:
 
-Initialize and clone to the destination disk mmcblk0?  (yes/no): 
+Initialize and clone to the destination disk mmcblk0?  (yes/no):
 ```
 I'm using PARTUUID in /etc/fstab, but if I weren't, this clone would also
 automatically edit mmcblk0p names into the destination disk fstab.
@@ -600,14 +603,14 @@ I get an error requiring another initialize.  This time the
 error is because rpi-clone wants to clone the mounted third partition and
 there is no destination third partition:
 ```
-pi@rpi2: ~$ sudo rpi-clone mmcblk0 
+pi@rpi2: ~$ sudo rpi-clone mmcblk0
 
 Booted disk: sda 64.2GB                    Destination disk: mmcblk0 15.8GB
 ---------------------------------------------------------------------------
 Part               Size    FS     Label           Part   Size    FS     Label
 1 /boot           104.4MB  fat32  --              1     104.4MB  fat32  --
 2 root             16.8GB  ext4   Samsung 64GB A  2      15.7GB  ext4   SD-16c
-3 /home/pi/media   47.3GB  ext4   --                                      
+3 /home/pi/media   47.3GB  ext4   --
 ---------------------------------------------------------------------------
 Initialize required    : partition 3 /home/pi/media - destination missing.
                        :   Unmount source partitions or use -m
@@ -626,7 +629,7 @@ Booted disk: sda 64.2GB                    Destination disk: mmcblk0 15.8GB
 Part               Size    FS     Label           Part   Size    FS     Label
 1 /boot           104.4MB  fat32  --              1     104.4MB  fat32  --
 2 root             16.8GB  ext4   Samsung 64GB A  2      15.7GB  ext4   SD-16c
-3 /home/pi/media   47.3GB  ext4   --                                      
+3 /home/pi/media   47.3GB  ext4   --
 ---------------------------------------------------------------------------
 == SYNC sda file systems to mmcblk0 ==
 /boot                 (21.5MB used)  : SYNC to mmcblk0p1 (104.4MB size)
@@ -636,7 +639,7 @@ Run setup script       : no
 Verbose mode           : no
 -----------------------:
 
-Ok to proceed with the clone?  (yes/no): 
+Ok to proceed with the clone?  (yes/no):
 ```
 
 #### 11) Clones from my Debian desktop
@@ -654,11 +657,11 @@ Booted disk: sda 275.1GB                   Destination disk: sdb 320.1GB
 ---------------------------------------------------------------------------
 Part         Size    FS    Label           Part   Size    FS  Label
 1             1.0GB  ext4  SSD-275-G6-p1   1     320.1GB  --  --
-2 root       52.4GB  ext4  SSD-275-G6-p2                        
-3            12.6GB  swap  --                                   
-4           209.0GB  EXT   --                                   
-5 /home      62.9GB  ext4  SSD-275-G6-p5                        
-6 /mnt/sda  146.1GB  ext4  SSD-275-G6-p6                        
+2 root       52.4GB  ext4  SSD-275-G6-p2
+3            12.6GB  swap  --
+4           209.0GB  EXT   --
+5 /home      62.9GB  ext4  SSD-275-G6-p5
+6 /mnt/sda  146.1GB  ext4  SSD-275-G6-p6
 ---------------------------------------------------------------------------
 == Initialize: IMAGE sda partition table to sdb - FS types mismatch ==
 1                                    : IMAGE     to sdb1
@@ -675,7 +678,7 @@ Verbose mode           : no
                        :   The partition structure will be imaged from sda.
 -----------------------:
 
-Initialize and clone to the destination disk sdb?  (yes/no): 
+Initialize and clone to the destination disk sdb?  (yes/no):
 ```
 And a subsequent sync to the same disk after I have manually labeled all
 the partitions:
@@ -703,7 +706,7 @@ Run grub               : grub-install --root-directory=/mnt/clone /dev/sdb
 Verbose mode           : no
 -----------------------:
 
-Ok to proceed with the clone?  (yes/no): 
+Ok to proceed with the clone?  (yes/no):
 ```
 
 
