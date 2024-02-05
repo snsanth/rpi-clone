@@ -1,8 +1,7 @@
 ## rpi-clone
-Latest version: 2.0.23
 
 This updated code is located in a fork of Bill Willsons git repository
-https://github.com/billw2/rpi-clone at https://github.com/framps/rpi-clone
+https://github.com/billw2/rpi-clone at https://github.com/geerlingguy/rpi-clone
 
 Version 2 is a complete rewrite with improved capability over
 the original.  See the examples below.
@@ -48,7 +47,7 @@ only Debian packages with apt-get.
 
 #### On a Raspberry Pi:
 ```
-	$ git clone https://github.com/framps/rpi-clone.git
+	$ git clone https://github.com/geerlingguy/rpi-clone.git
 	$ cd rpi-clone
 	$ sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
 ```
@@ -69,7 +68,7 @@ add them to the rpi-clone-setup script.
   To install on another OS, rpi-clone may be renamed to suit.  For example,
   on my Debian desktop I rename:
 ```
-	$ git clone https://github.com/framps/rpi-clone.git
+	$ git clone https://github.com/geerlingguy/rpi-clone.git
 	$ cd rpi-clone
 	$ sudo cp rpi-clone /usr/local/sbin/sys-clone
 	$ sudo cp rpi-clone-setup /usr/local/sbin/sys-clone-setup
@@ -711,5 +710,4 @@ Ok to proceed with the clone?  (yes/no):
 
 
 ## Author
-Bill Wilson
-billw--at--gkrellm.net
+Original author: Bill Wilson (billw--at--gkrellm.net)
