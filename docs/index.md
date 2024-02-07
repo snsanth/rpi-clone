@@ -44,6 +44,14 @@ sudo rpi-clone nvme0n1
 
 For an exhaustive list of options and usage scenarios, read [this project's README](https://github.com/geerlingguy/rpi-clone).
 
+## Code and License
+
+The code for `rpi-clone` is maintained on GitHub:
+
+[https://github.com/geerlingguy/rpi-clone](https://github.com/geerlingguy/rpi-clone).
+
+The code is licensed under the `BSD 3-Clause License`.
+
 ## Author
 
 This project was originally authored by [@billw2](https://github.com/billw2/rpi-clone), and is now maintained by [@geerlingguy](https://www.jeffgeerling.com), based on many patches by [@framp](https://www.linux-tips-and-tricks.de/en/).
