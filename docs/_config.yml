@@ -17,8 +17,8 @@ title: rpi-clone
 description: >-
   A shell script to clone a booted disk on a Raspberry Pi.
 baseurl: ''
-domain: "rpi-clone.github.io"
-url: "https://rpi-clone.github.io"
+domain: "rpi-clone.jeffgeerling.com"
+url: "https://rpi-clone.jeffgeerling.com"
 
 # Build settings
 markdown: kramdown
