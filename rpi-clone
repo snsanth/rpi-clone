@@ -7,8 +7,8 @@
 # the rpi-clone github source repository:
 #    https://github.com/billw2/rpi-clone
 
-# This updated code is located in a fork of Bill Willsons git repository
-# at https://github.com/framps/rpi-clone
+# This updated code is located in a fork of Bill Wilson's git repository
+# at https://github.com/geerlingguy/rpi-clone
 
 version=2.0.23
 
@@ -154,12 +154,12 @@ usage: $PGM sdN {-v|--verbose} {-f|--force-initialize} {-f2}
   Clones can be from a booted SD card or USB disk.  For a description, example
   clone runs and example usage of above options, see the README.md at:
 
-      https://github.com/billw2/rpi-clone
+      https://github.com/geerlingguy/rpi-clone
 
   A line logging a $PGM run is written to $clone_log.
 
   Download:
-    git clone https://github.com/billw2/rpi-clone
+    git clone https://github.com/geerlingguy/rpi-clone
 "
 	exit 1
 	}
