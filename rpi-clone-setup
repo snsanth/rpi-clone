@@ -126,7 +126,7 @@ echo -e "$LINE\n"
 # Edit /etc/hosts - edit the sed command if editing fails for your /etc/hosts.
 #
 cd $clone/etc
-sed -i s/"$HOSTNAME"/"$newhost"/ hosts
+sed -i s/"$HOSTNAME"/"$newhost"/g hosts
 #
 # Read it back to verify.
 #
