@@ -46,6 +46,10 @@ only Debian packages with apt-get.
 
 #### On a Raspberry Pi:
 ```
+	Either
+	$ curl https://github.com/geerlingguy/rpi-clone/blob/master/install | sudo bash
+
+	or
 	$ git clone https://github.com/geerlingguy/rpi-clone.git
 	$ cd rpi-clone
 	$ sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
