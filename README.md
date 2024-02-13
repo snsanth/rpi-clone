@@ -49,13 +49,14 @@ only Debian packages with apt-get.
 $ curl https://github.com/geerlingguy/rpi-clone/blob/master/install | sudo bash
 ```
 
-You can also manually clone the project and copy the scripts into place, if you don't want to use the `curl | sudo bash` install method:
+> Alternatively, you can manually install from source if you don't trust the `curl | sudo bash` install script:
+> 
+> ```
+> git clone https://github.com/geerlingguy/rpi-clone.git
+> cd rpi-clone
+> sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
+> ```
 
-```
-$ git clone https://github.com/geerlingguy/rpi-clone.git
-$ cd rpi-clone
-$ sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
-```
 Make sure `/usr/local/sbin` is in your $PATH and then run
 `rpi-clone` or `rpi-clone-setup` with no args to print usage.
 
