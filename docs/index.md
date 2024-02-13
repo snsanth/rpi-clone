@@ -19,10 +19,16 @@ Destinations include:
 Install `rpi-clone`:
 
 ```
-git clone https://github.com/geerlingguy/rpi-clone.git
-cd rpi-clone
-sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
+curl https://raw.githubusercontent.com/geerlingguy/rpi-clone/master/install | sudo bash
 ```
+
+> Alternatively, you can manually install from source if you don't trust the `curl | sudo bash` install script:
+> 
+> ```
+> git clone https://github.com/geerlingguy/rpi-clone.git
+> cd rpi-clone
+> sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
+> ```
 
 If booting off an internal microSD card, clone to an external USB drive:
 

@@ -20,8 +20,8 @@
 set -uo pipefail
 
 readonly PACKAGE="rpi-clone"
-readonly DOWNLOAD_REPOSITORY="https://github.com/geerlingguy/rpi-clone/blob/master"
-readonly DOWNLOAD_REPOSITORY_4_MESSAGE="$(sed 's@/blob/master@@' <<< "$DOWNLOAD_REPOSITORY")"
+readonly DOWNLOAD_REPOSITORY="https://raw.githubusercontent.com/geerlingguy/rpi-clone/master"
+readonly DOWNLOAD_REPOSITORY_4_MESSAGE="$(sed 's@/master@@' <<< "$DOWNLOAD_REPOSITORY")"
 readonly FILES_2_DOWNLOAD"=rpi-clone rpi-clone-setup"
 readonly TMP_DIR=$(mktemp -d)
 readonly INSTALLATION_DIR="/usr/local/sbin"

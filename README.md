@@ -46,7 +46,7 @@ only Debian packages with apt-get.
 
 #### On a Raspberry Pi:
 ```
-$ curl https://github.com/geerlingguy/rpi-clone/blob/master/install | sudo bash
+$ curl https://raw.githubusercontent.com/geerlingguy/rpi-clone/master/install | sudo bash
 ```
 
 > Alternatively, you can manually install from source if you don't trust the `curl | sudo bash` install script:
