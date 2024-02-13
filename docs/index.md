@@ -50,6 +50,14 @@ sudo rpi-clone nvme0n1
 
 For an exhaustive list of options and usage scenarios, read [this project's README](https://github.com/geerlingguy/rpi-clone).
 
+## Uninstall
+
+Assuming you used the `install` script with the `curl | sudo bash` installation method, the following command will remove both files that were downloaded:
+
+```
+sudo rm -rf /usr/local/sbin/rpi-clone*
+```
+
 ## Code and License
 
 The code for `rpi-clone` is maintained on GitHub:

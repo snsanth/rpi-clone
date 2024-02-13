@@ -52,9 +52,9 @@ $ curl https://raw.githubusercontent.com/geerlingguy/rpi-clone/master/install | 
 > Alternatively, you can manually install from source if you don't trust the `curl | sudo bash` install script:
 > 
 > ```
-> git clone https://github.com/geerlingguy/rpi-clone.git
-> cd rpi-clone
-> sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
+> $ git clone https://github.com/geerlingguy/rpi-clone.git
+> $ cd rpi-clone
+> $ sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
 > ```
 
 Make sure `/usr/local/sbin` is in your $PATH and then run
@@ -714,6 +714,15 @@ Verbose mode           : no
 Ok to proceed with the clone?  (yes/no):
 ```
 
+
+## Uninstall
+Uninstall by removing the two `rpi-clone` scripts that were downloaded:
+
+```
+$ sudo rm -rf /usr/local/sbin/rpi-clone*
+```
+
+If you installed manually by cloning this GitHub project (instead of the `curl | sudo bash` method), delete the clone as well.
 
 ## Author
 Original author: Bill Wilson (billw--at--gkrellm.net)
