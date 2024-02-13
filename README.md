@@ -46,26 +46,28 @@ only Debian packages with apt-get.
 
 #### On a Raspberry Pi:
 ```
-	Either
-	$ curl https://github.com/geerlingguy/rpi-clone/blob/master/install | sudo bash
-
-	or
-	$ git clone https://github.com/geerlingguy/rpi-clone.git
-	$ cd rpi-clone
-	$ sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
+$ curl https://github.com/geerlingguy/rpi-clone/blob/master/install | sudo bash
 ```
-Make sure /usr/local/sbin is in your $PATH and then run
-rpi-clone or rpi-clone-setup with no args to print usage.
 
-rpi-clone-setup is for setting the hostname in /etc/hostname and /etc/hosts
-files.  It is run automatically by rpi-clone if -s args are given,
-but before your first clone using a -s option, test run rpi-clone-setup with:
+You can also manually clone the project and copy the scripts into place, if you don't want to use the `curl | sudo bash` install method:
+
+```
+$ git clone https://github.com/geerlingguy/rpi-clone.git
+$ cd rpi-clone
+$ sudo cp rpi-clone rpi-clone-setup /usr/local/sbin
+```
+Make sure `/usr/local/sbin` is in your $PATH and then run
+`rpi-clone` or `rpi-clone-setup` with no args to print usage.
+
+`rpi-clone-setup` is for setting the hostname in `/etc/hostname` and `/etc/hosts`
+files.  It is run automatically by `rpi-clone` if `-s` args are given,
+but before your first clone using a `-s` option, test run `rpi-clone-setup` with:
 ```
       $ sudo rpi-clone-setup -t testhostname
 ```
-And check the files under /tmp/clone-test to be sure the files have been
+And check the files under `/tmp/clone-test` to be sure the files have been
 edited correctly.  If you need additional customizations to a clone,
-add them to the rpi-clone-setup script.
+add them to the `rpi-clone-setup` script.
 
 #### On other OS:
   To install on another OS, rpi-clone may be renamed to suit.  For example,
