@@ -21,7 +21,6 @@ set -uo pipefail
 
 readonly PACKAGE="rpi-clone"
 readonly DOWNLOAD_REPOSITORY="https://raw.githubusercontent.com/geerlingguy/rpi-clone/master"
-readonly DOWNLOAD_REPOSITORY_4_MESSAGE="$(sed 's@/master@@' <<< "$DOWNLOAD_REPOSITORY")"
 readonly FILES_2_DOWNLOAD"=rpi-clone rpi-clone-setup"
 readonly TMP_DIR=$(mktemp -d)
 readonly INSTALLATION_DIR="/usr/local/sbin"
@@ -35,7 +34,7 @@ echo "Installing $PACKAGE ..."
 
 for file in $FILES_2_DOWNLOAD; do
 
-	echo -n "Downloading $file from $DOWNLOAD_REPOSITORY_4_MESSAGE ... "
+	echo -n "Downloading $file from $DOWNLOAD_REPOSITORY/$file ... "
 	http_code=$(curl -w "%{http_code}" -L -s $DOWNLOAD_REPOSITORY/$file -o $file)
 	(( $? )) && { echo "Curl failed"; exit 1; }
 	[[ $http_code != 200 ]] && { echo "http request failed with $http_code"; exit 1; }
