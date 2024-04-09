@@ -940,7 +940,12 @@ then
     exit 1
 fi
 
-cmdlinedir=$(awk '$1 !~ "^#" && $2 ~ "^/boot" && $3 == "vfat" { print substr($2, 2); exit }' /etc/fstab)
+# Starting with bookworm /boot/firmware/cmdline.txt is used. All previous RaspbianOS releases use /boot/cmdline.txt
+cmdlinedir=$(mount | awk '$3 ~ "^/boot(/firmware)?$" && $5 == "vfat" { print substr($3, 2); exit }' )
+if [[ -z "$cmdlinedir" ]]; then
+	echo "Unable to locate boot device"
+	exit 1
+fi
 
 if ((convert_to_partuuid))
 then
