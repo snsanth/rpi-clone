@@ -296,6 +296,16 @@ rsync_file_system()
 
 	qprintf "  => lsblk $(lsblk)\n"
 
+	if ! findmnt "$src_dir" &>/dev/null; then
+		if ! mount "$src_dir"; then
+			echo "    Mount failure of $1 on $2."
+			echo "Aborting!"
+			exit 1
+		else
+			qecho "  Remounting $1"
+		fi
+	fi
+
 	qprintf "  => rsync $1 $2 $3 ..."
 
 	if [ "$3" == "with-root-excludes" ]
