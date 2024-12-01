@@ -294,7 +294,7 @@ rsync_file_system()
 
 	if ! findmnt "$src_dir" &>/dev/null; then
 		if ! mount "$src_dir"; then
-			echo "    Mount failure of $1 on $2."
+			echo "??? Remount failure of $1."
 			echo "Aborting!"
 			exit 1
 		else
