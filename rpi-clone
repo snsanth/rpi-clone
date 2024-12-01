@@ -12,6 +12,8 @@
 
 version=2.0.23
 
+declare -r PS4='|${LINENO}> \011${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+
 # setup trusted paths for dependancies (like rsync, grub, fdisk, etc)
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
@@ -287,6 +289,8 @@ rsync_file_system()
 	{
 	src_dir="$1"
 	dst_dir="$2"
+
+	qprintf "  => lsblk $(lsblk)\n"
 
 	qprintf "  => rsync $1 $2 $3 ..."
 
