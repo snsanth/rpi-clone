@@ -269,6 +269,10 @@ unmount_list()
 		then
 			qecho "  Failed to unmount: $dir"
 		fi
+		if ! rmdir $dir
+		then
+			qecho "  Failed to rmdir: $dir"
+		fi
 	done
 	}
 
