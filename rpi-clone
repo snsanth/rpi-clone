@@ -10,9 +10,12 @@
 # This updated code is located in a fork of Bill Wilson's git repository
 # at https://github.com/geerlingguy/rpi-clone
 
-version=2.0.24
+version=2.0.23-1
 
 declare -r PS4='|${LINENO}> \011${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+
+echo "@@@ rpi5 branch version from framp @@@"
+echo
 
 # setup trusted paths for dependancies (like rsync, grub, fdisk, etc)
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
