@@ -10,7 +10,10 @@
 # This updated code is located in a fork of Bill Wilson's git repository
 # at https://github.com/geerlingguy/rpi-clone
 
-version=2.0.24
+version=2.0.25
+
+# prefix debug statements with line numbers when -x is used 
+declare -r PS4='|${LINENO}> \011${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 
 # setup trusted paths for dependancies (like rsync, grub, fdisk, etc)
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
@@ -293,6 +296,19 @@ rsync_file_system()
 	dst_dir="$2"
 
 	qprintf "  => rsync $1 $2 $3 ..."
+
+	# make sure the partition is mounted
+	# sometimes it happens on RPi5 /boot is no longer mounted and then
+	# the cloned boot partition will be empty
+	if ! findmnt "$src_dir" &>/dev/null; then
+		if ! mount "$src_dir"; then
+			echo "??? Remount failure of $1."
+			echo "Aborting!"
+			exit 1
+		else
+			qecho "  Remounting $1"
+		fi
+	fi
 
 	if [ "$3" == "with-root-excludes" ]
 	then
