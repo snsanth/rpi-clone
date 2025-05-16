@@ -32,6 +32,11 @@ cd $TMP_DIR
 
 echo "Installing $PACKAGE ..."
 
+if [[ ! -d $INSTALLATION_DIR ]]; then
+       echo "ERROR: INSTALLATION_DIR ($INSTALLATION_DIR) is not a directory"
+       exit 1
+fi
+
 for file in $FILES_2_DOWNLOAD; do
 
 	echo -n "Downloading $file from $DOWNLOAD_REPOSITORY/$file ... "
