@@ -644,14 +644,21 @@ change_label()
 get_src_disk()
 	{
 	partition=${1#/dev/}
-	disk=${partition:: -1}
-	num="${partition: -1}"
-	if [[ $disk == *"mmcblk"* || $disk == *"nvme"* ]]
-	then
-		SD_slot_boot=1
-		disk=${disk:0:7}
-		src_part_base=${disk}p
-	fi
+	# Handle NVMe naming separately
+    if [[ "$partition" =~ ^nvme[0-9]+n[0-9]+p[0-9]+$ ]]; then
+        # Strip to nvmeXnY (no partition number)
+        disk=$(echo "$partition" | sed -E 's/(nvme[0-9]+n[0-9]+)p[0-9]+/\1/')
+        num=$(echo "$partition" | sed -E 's/nvme[0-9]+n[0-9]+p//')
+        src_part_base="${disk}p"
+    else
+        disk=${partition:: -1}
+        num="${partition: -1}"
+        if [[ $disk == *"mmcblk"* ]]; then
+            SD_slot_boot=1
+            disk=${disk:0:7}
+            src_part_base="${disk}p"
+        fi
+    fi
 	printf -v "${2}" "%s" "$disk"
 	printf -v "${3}" "%s" "$num"
 	}
